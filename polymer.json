@@ -1,0 +1,5 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/ex-pos-express/ex-pos-express.html",
+  "fragments": []
+}
