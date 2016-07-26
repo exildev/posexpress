@@ -1,0 +1,6 @@
+{
+  "name": "PosExpress",
+  "short_name": "PosExpress",
+  "start_url": "/",
+  "display": "standalone"
+}

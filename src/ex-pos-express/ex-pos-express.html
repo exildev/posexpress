@@ -1,0 +1,291 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-datatable/paper-datatable.html">
+<link rel="import" href="../../bower_components/paper-datatable/paper-datatable-column.html">
+<dom-module id="ex-pos-express">
+    <template>
+        <style>
+            :host {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .title {
+                text-transform: lowercase;
+            }
+
+            .title::first-letter {
+                text-transform: uppercase;
+            }
+
+            .main_content {
+                width: 100%;
+                height: 100%;
+                background: #333;
+            }
+
+            .main_content section aside {
+                width: 276px;
+                height: 100%;
+            }
+
+            .main_content section aside,
+            .main_content section aside+ article {
+                float: left;
+            }
+
+            .main_content section aside+ article {
+                width: calc(100% - 324px);
+            }
+
+            .main_content section article,
+            .main_content section aside {
+                padding-left: 16px;
+                padding-right: 8px;
+            }
+
+            .main_content section article+ article,
+            .main_content section aside+ article {
+                padding-left: 8px;
+                padding-right: 16px;
+            }
+
+            .main_content section article,
+            .main_content section article+ article {
+                width: calc(50% - 24px);
+                float: left;
+            }
+
+            .main_content aside paper-material {
+                height: 100%;
+            }
+
+            .main_content aside paper-material,
+            .main_content article paper-material {
+                width: 100%;
+                margin-top: 16px
+            }
+
+            paper-material {
+                border-radius: 2px;
+                background: white;
+            }
+
+            paper-material > * {
+                padding: 0 16px;
+            }
+
+            paper-input {
+                margin: 0 8px;
+            }
+
+            paper-input.white {
+                --paper-input-container-color: white;
+                --paper-input-container-focus-color: white;
+                --paper-input-container-invalid-color: red;
+                --paper-input-container-input-color: white;
+            }
+
+            paper-dropdown-menu-light.white {
+                --paper-dropdown-menu-label: {
+                    color: white;
+                }
+                ;
+                --paper-dropdown-menu-input: {
+                    color: white;
+                }
+            }
+
+            .main_content section.top {
+                height: calc(70% - 24px);
+                padding-bottom: 8px;
+            }
+
+            .main_content section.bottom {
+                height: calc(30% - 24px);
+                padding-top: 8px;
+            }
+
+            .main_content section.bottom article,
+            .main_content section.bottom article paper-material {
+                height: 100%
+            }
+
+            .main_panel {
+                height: 100%;
+            }
+
+            .main_panel paper-material.top {
+                height: calc(80% - 8px);
+            }
+
+            .main_panel paper-material.bottom {
+                height: calc(20% - 8px);
+            }
+        </style>
+        <paper-header-panel>
+            <paper-toolbar class="medium-tall">
+                <paper-icon-button icon="menu"></paper-icon-button>
+                <span class="title">Title</span>
+                <paper-dropdown-menu-light class=" white" label="Tipo">
+                    <paper-listbox class="dropdown-content">
+                        <paper-item>Tipo 1</paper-item>
+                        <paper-item>Tipo 2</paper-item>
+                        <paper-item>Tipo 3</paper-item>
+                        <paper-item>Tipo 4</paper-item>
+                    </paper-listbox>
+                </paper-dropdown-menu-light>
+                <paper-icon-button icon="refresh"></paper-icon-button>
+                <paper-icon-button icon="add"></paper-icon-button>
+                <paper-input class="middle white" label="Busqueda">
+                    <paper-icon-button icon="search"></paper-icon-button>
+                </paper-input>
+                <paper-input class="middle white" label="Nombre"></paper-input>
+                <paper-input class="middle white" label="Apellido"></paper-input>
+                <paper-input class="middle white" label="Identificación"></paper-input>
+                <paper-input class="middle white" label="Teléfono"></paper-input>
+                <paper-input class="middle white" label="Direccíon"></paper-input>
+
+            </paper-toolbar>
+            <div class="main_content">
+                <section class="top">
+                    <aside>
+                        <paper-material>
+                            <div class="material-content">
+                                <paper-input label="Busqueda">
+                                    <paper-icon-button suffix icon="search"></paper-icon-button>
+                                </paper-input>
+                            </div>
+                            <div class="material-actions">
+                                <paper-listbox class="dropdown-content">
+                                    <paper-item>Tag o Producto <span>P. Unitario</span></paper-item>
+                                    <paper-item>Tag o Producto <span>P. Unitario</span></paper-item>
+                                    <paper-item>Tag o Producto <span>P. Unitario</span></paper-item>
+                                    <paper-item>Tag o Producto <span>P. Unitario</span></paper-item>
+                                </paper-listbox>
+                            </div>
+                        </paper-material>
+                    </aside>
+                    <article class="main_panel">
+                        <paper-material class="top">
+                            <div>
+                                <paper-datatable data="{{data}}" selectable multi-selection>
+                                    <paper-datatable-column header="Codigo_PLU" property="plu" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Producto" property="producto" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Cantidad" property="cantidad" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Descripción" property="descripcion" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 1" property="c1" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 2" property="c2" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 3" property="c3" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 4" property="c4" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Tags" property="tags" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="P. Unitario Subtotal" property="pust" sortable></paper-datatable-column>
+                                </paper-datatable>
+                            </div>
+                        </paper-material>
+                        <paper-material class="bottom">
+                            <div>
+                                <paper-input label="Total aproximado" value="600"></paper-input>
+                            </div>
+                        </paper-material>
+                    </article>
+                </section>
+                <section class="bottom">
+                    <article>
+                        <paper-material>
+                            <div>
+                                <paper-datatable data="{{data2}}" selectable>
+                                    <paper-datatable-column header="Promción" property="promo" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Tipo Promción" property="tipo" sortable></paper-datatable-column>
+                                </paper-datatable>
+                            </div>
+                        </paper-material>
+                    </article>
+                    <article>
+                        <paper-material>
+                            <div>
+                                <paper-dropdown-menu-light label="Dirección">
+                                    <paper-listbox class="dropdown-content">
+                                        <paper-item>Tipo 1</paper-item>
+                                        <paper-item>Tipo 2</paper-item>
+                                        <paper-item>Tipo 3</paper-item>
+                                        <paper-item>Tipo 4</paper-item>
+                                    </paper-listbox>
+                                </paper-dropdown-menu-light>
+                                <paper-input label="Nueva Dirección"></paper-input>
+                            </div>
+                        </paper-material>
+                    </article>
+                </section>
+            </div>
+        </paper-header-panel>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'ex-pos-express',
+
+            properties: {
+                name: {
+                    type: String,
+                    value: 'tienda',
+                },
+
+                data: {
+                    type: Array,
+                    value: function() {
+                        return [{
+                            'plu': 1,
+                            'producto': 'noc',
+                            'cantidad': 5,
+                            'descripcion': 'noc noc',
+                            'c1': 'noc',
+                            'c2': 'noc',
+                            'c3': 'noc',
+                            'c4': 'noc',
+                            'tags': 'noc1, noc2',
+                            'pust': 500
+                        }, {
+                            'plu': 2,
+                            'producto': 'noc',
+                            'cantidad': 5,
+                            'descripcion': 'noc noc',
+                            'c1': 'noc',
+                            'c2': 'noc',
+                            'c3': 'noc',
+                            'c4': 'noc',
+                            'tags': 'noc1, noc2',
+                            'pust': 100
+                        }];
+                    }
+                },
+                data2: {
+                    type: Array,
+                    value: function() {
+                        return [{
+                            'promo': 'promo1',
+                            'tipo': 'noc1',
+                        }, {
+                            'promo': 'promo2',
+                            'tipo': 'noc2',
+                        }];
+                    }
+                }
+            },
+
+        });
+    </script>
+</dom-module>
