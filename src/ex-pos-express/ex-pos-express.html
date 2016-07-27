@@ -131,7 +131,7 @@
         <paper-header-panel>
             <paper-toolbar class="medium-tall">
                 <paper-icon-button icon="menu"></paper-icon-button>
-                <span class="title">Title</span>
+                <span class="title">[[name]]</span>
                 <paper-dropdown-menu-light class=" white" label="Tipo">
                     <paper-listbox class="dropdown-content">
                         <paper-item>Tipo 1</paper-item>
@@ -186,7 +186,7 @@
                                     <paper-datatable-column header="Tags" property="tags">
                                         <template>
                                             <template is="dom-repeat" items="{{value}}">
-                                                <span class="tag">{{item}}</span>
+                                                <span class="tag">[[item]]</span>
                                             </template>
                                         </template>
                                     </paper-datatable-column>
@@ -271,8 +271,7 @@
                             'c3': 'noc',
                             'c4': 'noc',
                             'tags': [
-                                'noc1',
-                                'noc2'
+                                'noc1'
                             ],
                             'pust': 100
                         }];
