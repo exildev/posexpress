@@ -69,7 +69,7 @@
                 background: white;
             }
 
-            paper-material > * {
+            paper-material> * {
                 padding: 0 16px;
             }
 
@@ -120,6 +120,13 @@
             .main_panel paper-material.bottom {
                 height: calc(20% - 8px);
             }
+
+            span.tag{
+                background: var(--light-primary-color);
+                padding: 6px 8px;
+                border-radius: 5px;
+
+            }
         </style>
         <paper-header-panel>
             <paper-toolbar class="medium-tall">
@@ -167,16 +174,22 @@
                     <article class="main_panel">
                         <paper-material class="top">
                             <div>
-                                <paper-datatable data="{{data}}" selectable multi-selection>
+                                <paper-datatable data="{{data}}">
                                     <paper-datatable-column header="Codigo_PLU" property="plu" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Producto" property="producto" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Cantidad" property="cantidad" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Descripción" property="descripcion" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Categoria 1" property="c1" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Categoria 2" property="c2" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Categoria 3" property="c3" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Categoria 4" property="c4" sortable></paper-datatable-column>
-                                    <paper-datatable-column header="Tags" property="tags" sortable></paper-datatable-column>
+                                    <paper-datatable-column header="Producto" property="producto"></paper-datatable-column>
+                                    <paper-datatable-column header="Cantidad" property="cantidad"></paper-datatable-column>
+                                    <paper-datatable-column header="Descripción" property="descripcion"></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 1" property="c1"></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 2" property="c2"></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 3" property="c3"></paper-datatable-column>
+                                    <paper-datatable-column header="Categoria 4" property="c4"></paper-datatable-column>
+                                    <paper-datatable-column header="Tags" property="tags">
+                                        <template>
+                                            <template is="dom-repeat" items="{{value}}">
+                                                <span class="tag">{{item}}</span>
+                                            </template>
+                                        </template>
+                                    </paper-datatable-column>
                                     <paper-datatable-column header="P. Unitario Subtotal" property="pust" sortable></paper-datatable-column>
                                 </paper-datatable>
                             </div>
@@ -243,7 +256,10 @@
                             'c2': 'noc',
                             'c3': 'noc',
                             'c4': 'noc',
-                            'tags': 'noc1, noc2',
+                            'tags': [
+                                'noc1',
+                                'noc2'
+                            ],
                             'pust': 500
                         }, {
                             'plu': 2,
@@ -254,7 +270,10 @@
                             'c2': 'noc',
                             'c3': 'noc',
                             'c4': 'noc',
-                            'tags': 'noc1, noc2',
+                            'tags': [
+                                'noc1',
+                                'noc2'
+                            ],
                             'pust': 100
                         }];
                     }
